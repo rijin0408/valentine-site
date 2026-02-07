@@ -67,11 +67,31 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Shuffle letters
   const shuffled = [...letters[mood]].sort(() => Math.random() - 0.5);
+  const closingLine = document.createElement("p");
+  closingLine.className = "letter-closing";
+  letterCard.appendChild(closingLine);
 
-  shuffled.forEach((text) => {
+  const emojiPool = [
+    "💌",
+    "✉️",
+    "💖",
+    "💗",
+    "💝",
+    "💞",
+    "💕",
+    "💜",
+    "💟",
+    "💓",
+  ];
+  // Shuffle emoji pool
+  const shuffledEmojis = [...emojiPool].sort(() => Math.random() - 0.5);
+
+  shuffled.forEach((text, index) => {
     const btn = document.createElement("button");
     btn.className = "letter-choice";
-    btn.textContent = "💌";
+
+    // Use a unique emoji per button
+    btn.textContent = shuffledEmojis[index % shuffledEmojis.length];
 
     btn.addEventListener("click", () => {
       letterText.textContent = text;
@@ -84,6 +104,9 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   pickAgainBtn.addEventListener("click", () => {
-    window.location.reload();
+    letterCard.style.display = "none";
+    letterText.textContent = "";
+    letterGrid.style.display = "grid";
+    actions.style.display = "none";
   });
 });

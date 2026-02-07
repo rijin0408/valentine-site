@@ -39,8 +39,22 @@ body {
   }
 }
 
+:root {
+  --lavender-bg: #f6f4fb;
+  --lavender-accent: #c4b5fd;
+  --lavender-button: #a78bfa;
+  --lavender-text: #4c1d95;
+}
+
+body {
+  background: var(--lavender-bg);
+  color: var(--lavender-text);
+  font-family: system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
 /* ===============================
-   PHOTO STACK LAYOUT
+   PHOTO STACK
 ================================ */
 .photo-stack {
   position: relative;
@@ -55,153 +69,102 @@ body {
   }
 }
 
-/* ===============================
-   PHOTO WRAPPER (ANIMATION LAYER)
-================================ */
 .photo-wrapper {
   position: absolute;
   inset: 0;
   opacity: 0;
-
-  animation:
-    stackIn 0.8s ease-out forwards,
-    gentleFloat 6s ease-in-out infinite;
+  transform: translate(var(--from-x), var(--from-y)) rotate(var(--rotate))
+    scale(0.95);
+  transition:
+    transform 1.4s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 1.2s ease;
 }
 
-/* Staggered timing */
-.photo-1 {
-  --rotate: -6deg;
-  animation-delay: 0.2s, 2s;
-}
-.photo-2 {
-  --rotate: 4deg;
-  animation-delay: 0.4s, 2.2s;
-}
-.photo-3 {
-  --rotate: -2deg;
-  animation-delay: 0.6s, 2.4s;
-}
-.photo-4 {
-  --rotate: 6deg;
-  animation-delay: 0.8s, 2.6s;
+.photo-wrapper.in {
+  opacity: 1;
+  transform: translate(0, 0) rotate(var(--rotate)) scale(1);
 }
 
-/* ===============================
-   IMAGE STYLING (INTERACTION LAYER)
-================================ */
+/* when cycling */
+.photo-wrapper.cycle-out {
+  transform: translateY(-18px) rotate(0deg) scale(1.02);
+  opacity: 0.9;
+}
+
+/* photo itself */
 .photo {
   width: 100%;
   height: 100%;
   object-fit: cover;
   border-radius: 1rem;
-  box-shadow: 0 20px 30px rgba(0, 0, 0, 0.15);
-  cursor: pointer;
-
-  transform: rotate(var(--rotate));
-  transition:
-    transform 0.4s ease,
-    z-index 0.2s;
-}
-
-/* Hover interaction */
-.photo:hover {
-  transform: scale(1.05) rotate(0deg);
-  z-index: 10;
-}
-
-/* Slideshow active state */
-.photo-wrapper.active {
-  z-index: 20;
-}
-
-.photo-wrapper.active .photo {
-  transform: scale(1.08) rotate(0deg);
+  box-shadow: 0 22px 40px rgba(0, 0, 0, 0.18);
 }
 
 /* ===============================
-   ANIMATIONS
-================================ */
-@keyframes stackIn {
-  from {
-    opacity: 0;
-    transform: translateY(40px) scale(0.9);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-@keyframes gentleFloat {
-  0% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-  100% {
-    transform: translateY(0);
-  }
-}
-
-/* ===============================
-   FLOATING DECORATIONS (BACKGROUND)
+   DECORATIONS
 ================================ */
 .decorations {
   position: fixed;
   inset: 0;
   pointer-events: none;
-  overflow: hidden;
-  z-index: 0;
 }
 
 .decor {
   position: absolute;
   bottom: -10%;
-  color: var(--lavender-accent);
   opacity: 0.6;
-  animation: driftUp linear infinite;
+  color: var(--lavender-accent);
+  animation: floatUp linear infinite;
 }
 
-/* Individual decoration positions & speeds */
 .decor-1 {
   left: 10%;
-  font-size: 1.2rem;
-  animation-duration: 14s;
+  animation-duration: 16s;
 }
 .decor-2 {
   left: 25%;
-  font-size: 1.6rem;
-  animation-duration: 18s;
+  animation-duration: 20s;
 }
 .decor-3 {
   left: 40%;
-  font-size: 1.1rem;
-  animation-duration: 12s;
+  animation-duration: 14s;
 }
 .decor-4 {
   left: 60%;
-  font-size: 1.4rem;
-  animation-duration: 20s;
+  animation-duration: 22s;
 }
 .decor-5 {
   left: 75%;
-  font-size: 1.8rem;
-  animation-duration: 22s;
+  animation-duration: 18s;
 }
 .decor-6 {
   left: 90%;
-  font-size: 1.2rem;
-  animation-duration: 16s;
+  animation-duration: 26s;
 }
 
-@keyframes driftUp {
+@keyframes floatUp {
   from {
     transform: translateY(0);
   }
   to {
     transform: translateY(-120vh);
   }
+}
+
+/* ===============================
+   CTA
+================================ */
+.home-cta {
+  padding: 1rem 2.2rem;
+  border-radius: 9999px;
+  background: linear-gradient(
+    135deg,
+    var(--lavender-button),
+    var(--lavender-accent)
+  );
+  color: white;
+  font-weight: 700;
+  text-decoration: none;
 }
 
 /* ===============================
@@ -457,4 +420,45 @@ body {
 
 .nav-btn:active {
   transform: scale(0.96);
+}
+
+.mood-selected {
+  transform: scale(0.95);
+  box-shadow: 0 0 0 4px rgba(167, 139, 250, 0.35);
+}
+
+.mood-card:nth-child(odd) {
+  margin-top: 0.5rem;
+}
+.mood-footer {
+  margin-top: 1.5rem;
+  font-size: 0.85rem;
+  color: #7c3aed;
+  opacity: 0.7;
+  text-align: center;
+}
+.letter-card.opening {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.letter-card.open {
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
+}
+.letter-card {
+  margin-top: 2rem;
+}
+
+.letter-actions {
+  margin-top: 2.5rem;
+}
+.letter-closing {
+  margin-top: 1.5rem;
+  font-style: italic;
+  text-align: center;
+  opacity: 0.75;
 }
