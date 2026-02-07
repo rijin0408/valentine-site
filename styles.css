@@ -458,3 +458,148 @@ body {
 .nav-btn:active {
   transform: scale(0.96);
 }
+
+/* ===============================
+   MUSIC TOGGLE BUTTON
+================================ */
+.music-btn {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+
+  background: white;
+  font-size: 1.4rem;
+  cursor: pointer;
+
+  box-shadow:
+    0 12px 30px rgba(0, 0, 0, 0.2),
+    inset 0 0 0 2px rgba(167, 139, 250, 0.25);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+
+  z-index: 40;
+}
+
+.music-btn:hover {
+  transform: scale(1.1);
+  box-shadow:
+    0 18px 40px rgba(0, 0, 0, 0.25),
+    inset 0 0 0 2px rgba(167, 139, 250, 0.4);
+}
+
+.music-btn:active {
+  transform: scale(0.95);
+}
+
+/* ===============================
+   VOLUME SLIDER (AUTO-HIDE)
+================================ */
+.volume-wrapper {
+  position: fixed;
+  bottom: 1.6rem;
+  right: 5.5rem;
+
+  background: white;
+  padding: 0.6rem 0.8rem;
+  border-radius: 9999px;
+
+  box-shadow:
+    0 10px 25px rgba(0, 0, 0, 0.2),
+    inset 0 0 0 2px rgba(167, 139, 250, 0.2);
+
+  display: none; /* 👈 HIDDEN BY DEFAULT */
+
+  align-items: center;
+
+  z-index: 40;
+}
+
+.volume-wrapper {
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
+  opacity: 0;
+  transform: translateY(6px);
+}
+
+.volume-wrapper.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===============================
+   HEART VOLUME SLIDER
+================================ */
+#volume-slider {
+  width: 100px;
+  height: 8px;
+  background: transparent;
+  cursor: pointer;
+  appearance: none;
+}
+
+/* Track */
+#volume-slider::-webkit-slider-runnable-track {
+  height: 8px;
+  background: linear-gradient(
+    90deg,
+    var(--lavender-accent),
+    var(--lavender-button)
+  );
+  border-radius: 9999px;
+  box-shadow: inset 0 0 6px rgba(167, 139, 250, 0.4);
+}
+
+/* ❤️ Heart Thumb (WebKit) */
+#volume-slider::-webkit-slider-thumb {
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
+
+  background: none;
+  background-image: url("data:image/svg+xml;utf8,\
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>\
+<path fill='%23a78bfa' d='M12 21s-6.716-4.358-9.428-7.071C.863 12.221 1 9.5 3.343 7.5 5.687 5.5 8.5 6.5 12 10c3.5-3.5 6.313-4.5 8.657-2.5C23 9.5 23.137 12.221 21.428 13.929 18.716 16.642 12 21 12 21z'/>\
+</svg>");
+  background-repeat: no-repeat;
+  background-size: contain;
+
+  margin-top: -7px; /* centers heart */
+  filter: drop-shadow(0 4px 6px rgba(167, 139, 250, 0.5));
+}
+
+/* Firefox track */
+#volume-slider::-moz-range-track {
+  height: 8px;
+  background: linear-gradient(
+    90deg,
+    var(--lavender-accent),
+    var(--lavender-button)
+  );
+  border-radius: 9999px;
+}
+
+/* ❤️ Heart Thumb (Firefox) */
+#volume-slider::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  background: none;
+  border: none;
+  cursor: pointer;
+
+  background-image: url("data:image/svg+xml;utf8,\
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>\
+<path fill='%23a78bfa' d='M12 21s-6.716-4.358-9.428-7.071C.863 12.221 1 9.5 3.343 7.5 5.687 5.5 8.5 6.5 12 10c3.5-3.5 6.313-4.5 8.657-2.5C23 9.5 23.137 12.221 21.428 13.929 18.716 16.642 12 21 12 21z'/>\
+</svg>");
+  background-repeat: no-repeat;
+  background-size: contain;
+
+  filter: drop-shadow(0 4px 6px rgba(167, 139, 250, 0.5));
+}

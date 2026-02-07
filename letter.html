@@ -13,6 +13,25 @@
   </head>
 
   <body>
+    <audio id="bg-music" loop>
+      <source src="assets/audio/audio.mp3" type="audio/mpeg" />
+    </audio>
+
+    <!-- Music Toggle Button -->
+    <button id="music-toggle" class="music-btn" aria-label="Toggle music">
+      🔇
+    </button>
+    <!-- Volume Control -->
+    <div class="volume-wrapper">
+      <input
+        type="range"
+        id="volume-slider"
+        min="0"
+        max="100"
+        value="50"
+        aria-label="Music volume"
+      />
+    </div>
     <main
       class="min-h-screen flex flex-col items-center justify-center px-6 relative z-10"
     >
@@ -69,5 +88,6 @@
 
     <!-- Letter logic -->
     <script src="letters.js"></script>
+    <script src="music.js"></script>
   </body>
 </html>
