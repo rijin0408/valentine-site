@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>For You 💜</title>
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body>
+    <!-- Floating Decorations -->
+    <div class="decorations">
+      <span class="decor decor-1">✦</span>
+      <span class="decor decor-2">♡</span>
+      <span class="decor decor-3">✦</span>
+      <span class="decor decor-4">✧</span>
+      <span class="decor decor-5">♡</span>
+      <span class="decor decor-6">✶</span>
+    </div>
+
+    <main
+      class="relative z-10 min-h-screen flex flex-col justify-center items-center px-6"
+    >
+      <!-- Photo Stack -->
+      <div class="photo-stack fade-in">
+        <div class="photo-wrapper photo-1">
+          <img src="assets/images/us1.jpg" class="photo" />
+        </div>
+        <div class="photo-wrapper photo-2">
+          <img src="assets/images/us2.jpg" class="photo" />
+        </div>
+        <div class="photo-wrapper photo-3">
+          <img src="assets/images/us3.jpg" class="photo" />
+        </div>
+        <div class="photo-wrapper photo-4">
+          <img src="assets/images/us4.jpg" class="photo" />
+        </div>
+      </div>
+
+      <!-- Text -->
+      <h1 class="mt-10 text-4xl md:text-5xl font-bold text-center fade-in">
+        Hello, bebeb! 💜
+      </h1>
+
+      <p class="mt-4 text-center max-w-md text-purple-700 fade-in">
+        This is your personal box of letters from me. I hope you like it.
+      </p>
+      <!-- Go to Moods Button -->
+      <a href="moods.html" class="home-cta fade-in mt-8">
+        Open your letters 💌
+      </a>
+    </main>
+
+    <script src="main.js"></script>
+    <div id="sparkle-layer"></div>
+  </body>
+</html>

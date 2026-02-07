@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your Letter 💜</title>
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Shared Styles -->
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body>
+    <main
+      class="min-h-screen flex flex-col items-center justify-center px-6 relative z-10"
+    >
+      <!-- Mood Title -->
+      <h1
+        id="mood-title"
+        class="text-3xl md:text-4xl font-bold text-center fade-in"
+      >
+        For You 💜
+      </h1>
+
+      <!-- Divider -->
+      <div class="mt-6 text-4xl text-purple-300 fade-in select-none">✧ ♡ ✦</div>
+
+      <!-- Letter Choices (5 random picks) -->
+      <div id="letter-choices" class="letter-grid mt-8 fade-in"></div>
+
+      <!-- Letter Card (hidden until chosen) -->
+      <div class="letter-card mt-8 fade-in">
+        <p class="letter-text"></p>
+      </div>
+
+      <!-- After reading actions -->
+      <div
+        id="letter-actions"
+        class="mt-6 flex gap-4 fade-in"
+        style="display: none"
+      >
+        <button
+          id="pick-again"
+          class="px-6 py-2 rounded-full bg-purple-200 text-purple-900 font-semibold hover:scale-105 transition transform shadow"
+        >
+          Pick another 💌
+        </button>
+
+        <a href="moods.html" class="nav-btn fade-in"> Back to moods </a>
+      </div>
+
+      <!-- Footer -->
+      <p class="mt-8 text-sm text-purple-500 fade-in">
+        <a href="moods.html">
+          Take your time. Not the correct mood? Pick again.</a
+        >
+      </p>
+    </main>
+
+    <!-- Decorations -->
+    <div class="decorations">
+      <span class="decor decor-1">✦</span>
+      <span class="decor decor-2">♡</span>
+      <span class="decor decor-3">*</span>
+      <span class="decor decor-4">✧</span>
+    </div>
+
+    <!-- Letter logic -->
+    <script src="letters.js"></script>
+  </body>
+</html>

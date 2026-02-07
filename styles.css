@@ -1,0 +1,460 @@
+/* ===============================
+   GLOBAL THEME
+================================ */
+:root {
+  --lavender-bg: #f6f4fb;
+  --lavender-accent: #c4b5fd;
+  --lavender-button: #a78bfa;
+  --lavender-text: #4c1d95;
+}
+
+body {
+  background-color: var(--lavender-bg);
+  color: var(--lavender-text);
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    sans-serif;
+  overflow-x: hidden;
+}
+
+/* ===============================
+   BASIC FADE-IN (TEXT, SECTIONS)
+================================ */
+.fade-in {
+  animation: fadeIn 1.2s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===============================
+   PHOTO STACK LAYOUT
+================================ */
+.photo-stack {
+  position: relative;
+  width: 280px;
+  height: 280px;
+}
+
+@media (min-width: 768px) {
+  .photo-stack {
+    width: 380px;
+    height: 380px;
+  }
+}
+
+/* ===============================
+   PHOTO WRAPPER (ANIMATION LAYER)
+================================ */
+.photo-wrapper {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+
+  animation:
+    stackIn 0.8s ease-out forwards,
+    gentleFloat 6s ease-in-out infinite;
+}
+
+/* Staggered timing */
+.photo-1 {
+  --rotate: -6deg;
+  animation-delay: 0.2s, 2s;
+}
+.photo-2 {
+  --rotate: 4deg;
+  animation-delay: 0.4s, 2.2s;
+}
+.photo-3 {
+  --rotate: -2deg;
+  animation-delay: 0.6s, 2.4s;
+}
+.photo-4 {
+  --rotate: 6deg;
+  animation-delay: 0.8s, 2.6s;
+}
+
+/* ===============================
+   IMAGE STYLING (INTERACTION LAYER)
+================================ */
+.photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 1rem;
+  box-shadow: 0 20px 30px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+
+  transform: rotate(var(--rotate));
+  transition:
+    transform 0.4s ease,
+    z-index 0.2s;
+}
+
+/* Hover interaction */
+.photo:hover {
+  transform: scale(1.05) rotate(0deg);
+  z-index: 10;
+}
+
+/* Slideshow active state */
+.photo-wrapper.active {
+  z-index: 20;
+}
+
+.photo-wrapper.active .photo {
+  transform: scale(1.08) rotate(0deg);
+}
+
+/* ===============================
+   ANIMATIONS
+================================ */
+@keyframes stackIn {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes gentleFloat {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* ===============================
+   FLOATING DECORATIONS (BACKGROUND)
+================================ */
+.decorations {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.decor {
+  position: absolute;
+  bottom: -10%;
+  color: var(--lavender-accent);
+  opacity: 0.6;
+  animation: driftUp linear infinite;
+}
+
+/* Individual decoration positions & speeds */
+.decor-1 {
+  left: 10%;
+  font-size: 1.2rem;
+  animation-duration: 14s;
+}
+.decor-2 {
+  left: 25%;
+  font-size: 1.6rem;
+  animation-duration: 18s;
+}
+.decor-3 {
+  left: 40%;
+  font-size: 1.1rem;
+  animation-duration: 12s;
+}
+.decor-4 {
+  left: 60%;
+  font-size: 1.4rem;
+  animation-duration: 20s;
+}
+.decor-5 {
+  left: 75%;
+  font-size: 1.8rem;
+  animation-duration: 22s;
+}
+.decor-6 {
+  left: 90%;
+  font-size: 1.2rem;
+  animation-duration: 16s;
+}
+
+@keyframes driftUp {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-120vh);
+  }
+}
+
+/* ===============================
+   CLICK / TAP SPARKLES
+================================ */
+#sparkle-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 30;
+}
+
+.sparkle {
+  position: absolute;
+  font-size: 1rem;
+  opacity: 0;
+  animation: sparklePop 700ms ease-out forwards;
+  color: var(--lavender-button);
+}
+
+@keyframes sparklePop {
+  0% {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+  30% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.8) translateY(-20px);
+  }
+}
+
+/* ===============================
+   MOOD SELECTION PAGE (UPDATED)
+================================ */
+.mood-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.2rem;
+  width: 100%;
+  max-width: 600px;
+}
+
+@media (min-width: 800px) {
+  .mood-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.mood-card {
+  background: linear-gradient(135deg, #ffffff, var(--lavender-bg));
+  border-radius: 1.5rem;
+
+  padding: 1.6rem 1.2rem;
+  min-height: 90px;
+
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-align: center;
+
+  color: var(--lavender-text);
+
+  box-shadow:
+    0 12px 25px rgba(0, 0, 0, 0.1),
+    inset 0 0 0 2px rgba(167, 139, 250, 0.15);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.mood-card:hover {
+  transform: translateY(-6px) scale(1.05);
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.15),
+    inset 0 0 0 2px rgba(167, 139, 250, 0.3);
+}
+
+.mood-card:active {
+  transform: scale(0.97);
+}
+
+/* ===============================
+   LETTER PAGE
+================================ */
+.letter-card {
+  display: none;
+  background: white;
+  border-radius: 1.5rem;
+  padding: 2rem 1.6rem;
+  max-width: 520px;
+  width: 100%;
+
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.12),
+    inset 0 0 0 2px rgba(167, 139, 250, 0.15);
+}
+
+.letter-text {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: var(--lavender-text);
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .letter-text {
+    font-size: 1.15rem;
+  }
+}
+
+/* ===============================
+   LETTER CHOICES (RANDOM PICK)
+================================ */
+.letter-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.4rem;
+  width: 100%;
+  max-width: 480px; /* 👈 BIGGER */
+}
+
+@media (max-width: 520px) {
+  .letter-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.letter-choice {
+  background: linear-gradient(135deg, #ffffff, var(--lavender-bg));
+
+  border-radius: 1.6rem;
+  min-height: 110px; /* 👈 IMPORTANT */
+
+  font-size: 1.6rem; /* 👈 Bigger icon */
+  font-weight: 600;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 16px 35px rgba(0, 0, 0, 0.14),
+    inset 0 0 0 2px rgba(167, 139, 250, 0.18);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.letter-choice:hover {
+  transform: translateY(-8px) scale(1.06);
+  box-shadow:
+    0 24px 50px rgba(0, 0, 0, 0.2),
+    inset 0 0 0 2px rgba(167, 139, 250, 0.35);
+}
+
+.letter-choice:active {
+  transform: scale(0.96);
+}
+
+/* ===============================
+   HOME CTA BUTTON
+================================ */
+.home-cta {
+  display: inline-block;
+  padding: 1rem 2.2rem;
+  border-radius: 9999px;
+
+  background: linear-gradient(
+    135deg,
+    var(--lavender-button),
+    var(--lavender-accent)
+  );
+
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-decoration: none;
+
+  box-shadow: 0 16px 35px rgba(167, 139, 250, 0.45);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+/* Playful hover */
+.home-cta:hover {
+  transform: translateY(-6px) scale(1.08);
+  box-shadow: 0 24px 50px rgba(167, 139, 250, 0.6);
+}
+
+/* Tap feedback */
+.home-cta:active {
+  transform: scale(0.96);
+}
+
+/* Gentle attention grab (optional but cute) */
+.home-cta {
+  animation: ctaFloat 3.5s ease-in-out infinite;
+}
+
+@keyframes ctaFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+/* ===============================
+   NAVIGATION BUTTONS
+================================ */
+.nav-actions {
+  margin-top: 2.5rem;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.nav-btn {
+  padding: 0.7rem 1.6rem;
+  border-radius: 9999px;
+  background: white;
+  color: var(--lavender-text);
+  font-weight: 600;
+  text-decoration: none;
+
+  box-shadow:
+    0 10px 25px rgba(0, 0, 0, 0.12),
+    inset 0 0 0 2px rgba(167, 139, 250, 0.2);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.nav-btn:hover {
+  transform: translateY(-4px) scale(1.05);
+  box-shadow:
+    0 16px 35px rgba(0, 0, 0, 0.18),
+    inset 0 0 0 2px rgba(167, 139, 250, 0.35);
+}
+
+.nav-btn:active {
+  transform: scale(0.96);
+}

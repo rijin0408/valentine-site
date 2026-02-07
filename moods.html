@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pick Your Mood 💜</title>
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Shared Styles -->
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body>
+    <main
+      class="min-h-screen flex flex-col items-center justify-center px-6 relative z-10"
+    >
+      <h1 class="text-3xl md:text-4xl font-bold text-center fade-in">
+        How are you feeling right now?
+      </h1>
+
+      <p
+        class="mt-6 max-w-lg text-center text-purple-600 leading-relaxed fade-in"
+      >
+        Hi, bub. These are letters I wrote just for you. They may not be many,
+        but I hope you’ll like each and every one of them, and that they help
+        you feel understood and connected.
+      </p>
+
+      <div class="mt-8 text-5xl text-purple-300 fade-in select-none">✧ ♡ ✦</div>
+
+      <!-- Mood Grid -->
+      <div class="mood-grid mt-10 fade-in">
+        <button class="mood-card" data-mood="happy">(✿◡‿◡) Happy</button>
+        <button class="mood-card" data-mood="sad">(っ °Д °;)っ Sad</button>
+        <button class="mood-card" data-mood="angry">o(≧口≦)o Angry</button>
+        <button class="mood-card" data-mood="tired">(╯°□°)╯ Tired</button>
+      </div>
+
+      <div class="nav-actions fade-in">
+        <a href="index.html" class="nav-btn"> ← Back to Home </a>
+      </div>
+    </main>
+
+    <!-- Decorations layer reused -->
+    <div class="decorations">
+      <span class="decor decor-1">✦</span>
+      <span class="decor decor-2">♡</span>
+      <span class="decor decor-3">*</span>
+      <span class="decor decor-4">✧</span>
+    </div>
+    <script src="moods.js"></script>
+  </body>
+</html>
